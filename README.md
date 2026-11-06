@@ -1,5 +1,7 @@
 # Clima Agora — App Flutter consumindo API REST
 
+Repositório: https://github.com/luanribeiro199/app_clima_flutter
+
 Aplicativo Flutter que consulta o clima atual e a previsão de 7 dias de qualquer cidade do mundo.
 
 ## API utilizada
