@@ -1,0 +1,57 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Clima Agora — Entrega</title>
+<style>
+@page{size:A4;margin:16mm}
+body{font-family:-apple-system,Helvetica,Arial,sans-serif;color:#1d2433;font-size:11pt;line-height:1.45}
+h1{color:#1565c0;margin:0 0 4px;font-size:22pt}
+h2{color:#1565c0;border-bottom:2px solid #e3eaf5;padding-bottom:4px;margin-top:22px;font-size:14pt}
+.sub{color:#5b6475;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font-size:10pt}
+td,th{border:1px solid #d7deea;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f1f5fb}
+code{background:#f1f5fb;padding:1px 4px;border-radius:3px;font-size:9.5pt}
+.campo{border-bottom:1px solid #999;display:inline-block;min-width:330px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:10px}
+figure{margin:0;text-align:center;break-inside:avoid}
+figure img{width:100%;border:1px solid #d7deea;border-radius:10px}
+figcaption{font-size:9pt;color:#5b6475;margin-top:4px}
+.pb{break-before:page}
+</style></head><body>
+<h1>Clima Agora</h1>
+<p class="sub">Aplicativo Flutter consumindo uma API REST externa</p>
+<p>Aluno: <b>Luan Ribeiro</b><br>
+Repositório GitHub: <span class="campo">&nbsp;</span></p>
+
+<h2>API utilizada</h2>
+<p><b>Open-Meteo</b> — API meteorológica gratuita e de código aberto, sem necessidade de chave de acesso.<br>
+Site / documentação: <b>https://open-meteo.com/en/docs</b></p>
+<table>
+<tr><th>Endpoint</th><th>Endereço</th><th>Uso no app</th></tr>
+<tr><td>Geocoding API</td><td><code>https://geocoding-api.open-meteo.com/v1/search</code></td><td>Busca cidades pelo nome e obtém latitude/longitude</td></tr>
+<tr><td>Forecast API</td><td><code>https://api.open-meteo.com/v1/forecast</code></td><td>Clima atual e previsão diária de 7 dias</td></tr>
+</table>
+
+<h2>Funcionamento</h2>
+<ol>
+<li>O usuário digita o nome de uma cidade; o app faz um <code>GET</code> assíncrono na Geocoding API e lista os resultados.</li>
+<li>Ao tocar em uma cidade, o app envia latitude/longitude para a Forecast API.</li>
+<li>O JSON retornado é convertido em objetos Dart (<code>fromJson</code>) e exibido: temperatura, sensação térmica, umidade, vento e previsão de 7 dias com chance de chuva.</li>
+</ol>
+
+<h2>Conceitos aplicados</h2>
+<ul>
+<li><b>HTTP:</b> pacote <code>http</code>, query parameters, verificação de <code>statusCode</code> e timeout.</li>
+<li><b>JSON:</b> <code>jsonDecode</code> e classes de modelo (<code>Cidade</code>, <code>Previsao</code>, <code>ClimaAtual</code>, <code>PrevisaoDia</code>).</li>
+<li><b>Assincronismo:</b> <code>Future</code>, <code>async/await</code>, <code>FutureBuilder</code> (carregando / erro / dados) e <code>RefreshIndicator</code>.</li>
+<li><b>Interface:</b> <code>ListView</code>, <code>Card</code>, <code>ListTile</code>, navegação entre telas e tratamento de lista vazia e falha de rede.</li>
+</ul>
+
+<h2 class="pb">Capturas de tela do aplicativo em funcionamento</h2>
+<div class="grid">
+<figure><img src="screenshots/01_inicio.png"><figcaption>1. Tela inicial</figcaption></figure>
+<figure><img src="screenshots/02_resultados_busca.png"><figcaption>2. Resultado da busca "Curitiba"</figcaption></figure>
+<figure><img src="screenshots/03_previsao_curitiba.png"><figcaption>3. Clima atual — Curitiba/PR</figcaption></figure>
+<figure><img src="screenshots/04_previsao_7_dias.png"><figcaption>4. Previsão de 7 dias</figcaption></figure>
+<figure><img src="screenshots/05_nenhum_resultado.png"><figcaption>5. Busca sem resultados</figcaption></figure>
+<figure><img src="screenshots/06_previsao_lisboa.png"><figcaption>6. Clima atual — Lisboa</figcaption></figure>
+</div>
+</body></html>
